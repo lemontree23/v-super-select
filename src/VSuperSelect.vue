@@ -14,7 +14,8 @@
   >
     <div class="super-select-mobile-header">
       <div class="super-select-left-arrow" @click="hideDropdown"></div>
-      <div class="super-select-long-label">Select your {{longLabel || label}}</div>
+      <div class="super-select-long-label" v-if="!mobileHeadingOverride">Select your {{longLabel || label}}</div>
+      <div class="super-select-long-label" v-else>{{mobileHeadingOverride}}</div>
     </div>
     <label ref="field" class="super-select-input" aria-hidden="true">
       <!-- Optional slot to format label -->
@@ -234,6 +235,11 @@ export default Vue.extend({
     nativeMobile: {
       type: Boolean,
       default: false,
+    },
+    // To override the heading in the mobile view
+    mobileHeadingOverride: {
+      type: String,
+      default: null,
     },
   },
   data() {
